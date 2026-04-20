@@ -5,13 +5,9 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def emot_detector():
-    """
-    Ruta para analizar el texto y devolver las emociones detectadas.
-    """
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
 
-    # Manejo de error para entradas vacías
     if response['dominant_emotion'] is None:
         return "Invalid text! Please try again!"
 
@@ -24,9 +20,6 @@ def emot_detector():
 
 @app.route("/")
 def render_index_page():
-    """
-    Renderiza la página principal de la aplicación.
-    """
     return render_template('index.html')
 
 if __name__ == "__main__":
